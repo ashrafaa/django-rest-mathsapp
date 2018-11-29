@@ -1,5 +1,6 @@
 from rest_framework import status, generics
 from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import render
 from .models import Exam, Question, Answer
 from .serializers import *
 
@@ -7,7 +8,7 @@ class answer_list(generics.ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('question__text', 'solutionValue')
+    filter_fields = ('question__text', 'solution_value')
 
 class answer_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
@@ -27,7 +28,7 @@ class exam_list(generics.ListCreateAPIView):
     queryset = Exam.objects.all()
     serializer_class = ExamSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('name', 'passPercentage')
+    filter_fields = ('name', 'pass_percentage')
 
 class exam_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exam.objects.all()

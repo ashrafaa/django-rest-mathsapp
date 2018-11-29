@@ -4,7 +4,7 @@ from rest_framework import serializers
 class ExamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Exam
-        fields = ('name', 'passPercentage')
+        fields = ('name', 'pass_percentage')
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     exam = ExamSerializer()
@@ -18,4 +18,4 @@ class AnswerSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('text', 'solutionValue', 'question')
+        fields = ('text', 'solution_value', 'question')
