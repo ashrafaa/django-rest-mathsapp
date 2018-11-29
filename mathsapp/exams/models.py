@@ -34,6 +34,9 @@ class Question(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions')
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
 
+    def get_question_level(self):
+        return "Question [%s] has %s level." % (self.text, self.difficulty) 
+
     def __str__(self):
         return self.text + " is added."
 
@@ -52,6 +55,9 @@ class Answer(models.Model):
     ) # value: 0 (total wrong), 1 (not exact), 2 (correct)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
     date_created = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def get_answer_value(self):
+        return "Answer [%s] is %s." % (self.text, self.solution_value) 
 
     def __str__(self):
         return "Answer: %s (%s)" % (self.text, self.solution_value)
